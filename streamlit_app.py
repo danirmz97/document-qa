@@ -105,10 +105,12 @@ st.header("1. Datos del Inmueble y la Inversión")
 col1, col2 = st.columns(2)
 
 with col1:
-    ciudad = st.selectbox(
+    ciudad = st.multiselect(
         "Ciudad del Inmueble:",
-        CIUDADES_DISPONIBLES, # ¡Aquí usas la lista de tus 100+ ciudades!
-        index=CIUDADES_DISPONIBLES.index("Barcelona") if "Barcelona" in CIUDADES_DISPONIBLES else 0, # Opcional: preselecciona Barcelona si está en la lista, si no, la primera
+        options=CIUDADES_DISPONIBLES,
+        default=["Barcelona"] if "Barcelona" in CIUDADES_DISPONIBLES else [],
+        max_selections=1,
+         placeholder="Escribe para buscar o selecciona una ciudad...",
         help="Selecciona la ciudad donde se encuentra el inmueble."
     )
 
