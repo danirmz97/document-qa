@@ -90,7 +90,7 @@ def calculate_irr(cash_flows):
 
 # --- 3. Título y Descripción de la Aplicación ---
 st.set_page_config(layout="centered", page_title="Calculadora Airbnb") # Configuración de la página
-st.title("🏡 Calculadora de Rentabilidad para Inmuebles de uso en Airbnb")
+st.title("🏡 Calculadora de Rentabilidad")
 st.markdown("""
 Analiza la viabilidad de comprar un inmueble para renta en Airbnb.
 Obtendrás un **precio promedio por noche**
