@@ -97,7 +97,7 @@ with col_logo:
     st.image("Logo.jpeg", width=100) # Ajusta el ancho según tu logo
 
 with col_title:
-    st.title("🏡 Calculadora de Rentabilidad")
+    st.title("Calculadora de Rentabilidad")
 
 st.markdown("""
 Analiza la viabilidad de comprar un inmueble para renta en Airbnb.
