@@ -1,0 +1,26 @@
+# .streamlit/config.toml
+
+[theme]
+# Color principal para elementos interactivos (botones, sliders, checkboxes)
+# Usamos el azul medio/turquesa oscuro de tu logo para un acento moderno y profesional
+primaryColor="#367087" # Un azul verdoso oscuro, similar al de la flecha del medio del logo
+
+# Color de fondo de la aplicación
+# Un gris muy claro o blanco roto para mantener la ligereza y limpieza del logo
+backgroundColor="#F7F8FC" # Blanco azulado muy claro, casi blanco
+
+# Color de fondo para widgets (inputs, selectbox) y la barra lateral
+# Un blanco puro para los campos de entrada y la barra lateral, que contrasta bien
+secondaryBackgroundColor="#FFFFFF"
+
+# Color del texto principal
+# El azul oscuro o el gris oscuro del texto de tu logo para legibilidad
+textColor="#2A3B4C" # Un azul grisáceo oscuro, parecido al texto "LATAM & SPAIN" del logo
+
+# Fuente de la aplicación
+font="sans serif" # Mantén sans-serif para un look moderno y limpio, como tu logo
+
+# Opcional: para el texto de advertencia, éxito, info y error
+# Streamlit usa sus propios colores por defecto para st.success, st.warning, etc.
+# pero si quisieras, podrías inyectar CSS para personalizarlos.
+# Por ahora, los colores por defecto de Streamlit para estos mensajes suelen ser buenos.
