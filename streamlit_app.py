@@ -311,7 +311,7 @@ if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
         # del inmueble al final del horizonte. Por ahora, lo omitimos para simplicidad.
         # Por ejemplo: flujos_caja[-1] += valor_venta_final_estimado
 
-                  tir = calculate_irr(flujos_caja)
+        tir = calculate_irr(flujos_caja)
 
         if tir is not None:
             # Seleccionar color en función de la TIR
