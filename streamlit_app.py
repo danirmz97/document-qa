@@ -142,14 +142,14 @@ st.markdown("---")
 # --- 6. Costes de inversión (usuario) ---
 st.header("2. Costes de inversión")
 
-    inversion_inmueble = st.number_input(
-        "Inversión inicial en el inmueble (€):",
-        min_value=10000.0, value=150000.0, step=1000.0, format="%.2f", help="Costo de compra del inmueble."
-    )
-    inversion_amueblar = st.number_input(
-        "Inversión en amueblar y equipar (€):",
-        min_value=0.0, value=20000.0, step=500.0, format="%.2f", help="Costo de mobiliario y equipamiento."
-    )
+inversion_inmueble = st.number_input(
+    "Inversión inicial en el inmueble (€):",
+    min_value=10000.0, value=150000.0, step=1000.0, format="%.2f", help="Costo de compra del inmueble."
+)
+inversion_amueblar = st.number_input(
+    "Inversión en amueblar y equipar (€):",
+    min_value=0.0, value=20000.0, step=500.0, format="%.2f", help="Costo de mobiliario y equipamiento."
+)
 
 st.markdown("---")
 
