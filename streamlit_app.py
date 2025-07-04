@@ -175,7 +175,7 @@ max_nights = st.number_input(
 # --- 5. Selección de amenidades ---
 st.subheader("2. Selección de amenidades")
 
-# Diccionario de categorías con amenities
+# --- Diccionario: categorías y sus amenities (claves internas) ---
 amenities_por_categoria = {
     "Tecnología y Entretenimiento": ["wifi", "tv", "sound_system", "streaming_services", "game_console"],
     "Seguridad": ["security_guard", "security_system", "window_guards", "lockbox", "smoke_alarm", "carbon_monoxide_alarm", "first_aid_kit", "fire_extinguisher", "lock_on_bedroom_door"],
@@ -189,7 +189,7 @@ amenities_por_categoria = {
     "Familia y Bebé": ["children_books_toys", "baby_bath", "baby_monitor", "crib", "baby_care"]
 }
 
-# Traducciones de amenities
+# --- Traducciones de amenities al español ---
 amenity_traducciones = {
     "wifi": "WiFi", "tv": "Televisión", "sound_system": "Sistema de sonido", "streaming_services": "Servicios de streaming",
     "game_console": "Consola de videojuegos", "security_guard": "Guardia de seguridad", "security_system": "Sistema de seguridad",
@@ -217,23 +217,33 @@ amenity_traducciones = {
     "baby_monitor": "Vigilabebés", "crib": "Cuna", "baby_care": "Cuidados para bebé"
 }
 
-# Selector de categoría y amenities dentro de ella
-categoria_seleccionada = st.selectbox(
-    "Selecciona una categoría de amenidades:",
-    options=list(amenities_por_categoria.keys()),
-    help="Seleccione una categoría para ver sus amenidades disponibles."
-)
+# --- Selector tipo checkbox (como en la imagen que enviaste) ---
+st.markdown("#### Tipo de amenidades")
+categorias_seleccionadas = []
 
-opciones = amenities_por_categoria[categoria_seleccionada]
+for categoria in amenities_por_categoria.keys():
+    if st.checkbox(categoria, key=f"cat_{categoria}"):
+        categorias_seleccionadas.append(categoria)
 
-amenities_en_categoria = st.multiselect(
-    f"Seleccione las amenidades en {categoria_seleccionada} que desee:",
-    options=opciones,
-    format_func=lambda x: amenity_traducciones.get(x, x)
-)
+# --- Mostrar multiselects según lo que marcó el usuario ---
+amenities_seleccionadas = {}
 
-# Debug o paso al modelo
-st.write("Amenidades seleccionadas (clave interna):", amenities_en_categoria)
+for categoria in categorias_seleccionadas:
+    opciones = amenities_por_categoria[categoria]
+    seleccionadas = st.multiselect(
+        f"Seleccione las amenidades en {categoria} que desee:",
+        options=opciones,
+        format_func=lambda x: amenity_traducciones.get(x, x),
+        key=f"amenities_{categoria}"
+    )
+    amenities_seleccionadas[categoria] = seleccionadas
+
+# --- Resultado final (puedes usarlo en el modelo o exportar) ---
+st.write("Amenidades seleccionadas por categoría:", amenities_seleccionadas)
+
+# --- Si prefieres tener un solo listado plano (para modelo) ---
+todas_las_amenities = [a for sublist in amenities_seleccionadas.values() for a in sublist]
+st.write("Lista total de amenidades (clave interna):", todas_las_amenities)
 
 # --- 6. Costes de inversión (usuario) ---
 st.markdown("---")
