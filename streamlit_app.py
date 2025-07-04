@@ -1,7 +1,6 @@
 import streamlit as st
 st.markdown("""
     <style>
-    /* Cambiar color del check de los checkboxes marcados */
     div[data-testid="stCheckbox"] > label > div:first-child {
         border: 2px solid #4099c6 !important;
     }
@@ -13,8 +12,6 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-
-
 import pandas as pd
 import numpy as np
 import random # Para generar un precio aleatorio
