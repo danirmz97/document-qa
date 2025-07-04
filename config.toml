@@ -3,7 +3,7 @@
 [theme]
 # Color principal para elementos interactivos (botones, sliders, checkboxes)
 # Usamos el azul medio/turquesa oscuro de tu logo para un acento moderno y profesional
-primaryColor="#367087" # Un azul verdoso oscuro, similar al de la flecha del medio del logo
+primaryColor="#4099c6" # Un azul verdoso oscuro, similar al de la flecha del medio del logo
 
 # Color de fondo de la aplicación
 # Un gris muy claro o blanco roto para mantener la ligereza y limpieza del logo
