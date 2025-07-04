@@ -335,8 +335,3 @@ with col_text_footer:
     st.markdown("<p style='font-size:14px; margin-top: 12px;'>Desarrollado por Latam&Spain Digital Solutions</p>", unsafe_allow_html=True)
 
 st.caption("Disclaimer: Esta herramienta proporciona estimaciones generales para una toma de decisión inicial.")
-
-with col_text_footer:
-    st.markdown("<p style='font-size:14px; margin-top: 12px;'>Desarrollado por Latam&Spain Digital Solutions</p>", unsafe_allow_html=True)
-
-st.caption("Disclaimer: Esta herramienta proporciona estimaciones generales para una toma de decisión inicial.")
