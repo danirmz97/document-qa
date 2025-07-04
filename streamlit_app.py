@@ -311,31 +311,29 @@ if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
         # del inmueble al final del horizonte. Por ahora, lo omitimos para simplicidad.
         # Por ejemplo: flujos_caja[-1] += valor_venta_final_estimado
 
-        tir = calculate_irr(flujos_caja)
+         tir = calculate_irr(flujos_caja)
 
-        if tir is not None:
-            color_tir = "#2E8B57" if tir >= tasa_descuento_objetivo else "#D9534F"
+if tir is not None:
+    # Seleccionar color en función de la TIR
+    color_tir = "#2E8B57" if tir >= tasa_descuento_objetivo else "#D9534F"
 
-st.markdown(f"""
-<h3 style='font-size:22px;'>
-    TIR estimada: 
-    <strong style='color:{color_tir};'>{tir:.2%}</strong>
-</h3>
-""", unsafe_allow_html=True)
+    st.markdown(f"""
+    <h3 style='font-size:22px;'>
+        TIR estimada: 
+        <strong style='color:{color_tir};'>{tir:.2%}</strong>
+    </h3>
+    """, unsafe_allow_html=True)
 
-
-            if tir > tasa_descuento_objetivo:
-                st.success(f"💸 **¡Excelente!** La TIR ({tir:.2%}) es mayor que tu tasa de descuento objetivo ({tasa_descuento_objetivo:.2%}). "
-                           "Este proyecto parece ser una **buena inversión** bajo tus criterios de rentabilidad.")
-                st.balloons() # Pequeña celebración visual
-            else:
-                st.warning(f"⚠️ **Atención:** La TIR ({tir:.2%}) es menor que tu tasa de descuento objetivo ({tasa_descuento_objetivo:.2%}). "
-                           "Considera revisar los inputs o si esta inversión cumple con tus expectativas de rentabilidad. Podría no ser tan atractiva.")
-        else:
-            st.error("No se pudo calcular la TIR con los flujos de caja proporcionados. Asegúrate de que haya una inversión inicial negativa seguida de flujos positivos.")
-            st.info(f"Flujos de Caja generados: {flujos_caja}") # Ayuda para depurar
+    if tir > tasa_descuento_objetivo:
+        st.success(f"💸 *¡Excelente!* La TIR ({tir:.2%}) es mayor que tu tasa de descuento objetivo ({tasa_descuento_objetivo:.2%}). "
+                   "Este proyecto parece ser una *buena inversión* bajo tus criterios de rentabilidad.")
+        st.balloons()
     else:
-        st.warning("No se puede calcular la rentabilidad si el precio por noche es cero o negativo.")
+        st.warning(f"⚠️ *Atención:* La TIR ({tir:.2%}) es menor que tu tasa de descuento objetivo ({tasa_descuento_objetivo:.2%}). "
+                   "Considera revisar los inputs o si esta inversión cumple con tus expectativas de rentabilidad. Podría no ser tan atractiva.")
+else:
+    st.error("No se pudo calcular la TIR con los flujos de caja proporcionados. Asegúrate de que haya una inversión inicial negativa seguida de flujos positivos.")
+    st.info(f"Flujos de Caja generados: {flujos_caja}")
 
 # --- 7. Pie de Página ---
 st.markdown("---")
