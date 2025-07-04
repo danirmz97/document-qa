@@ -270,7 +270,24 @@ st.markdown("---")
 
 
 # --- 6. Botón para Calcular ---
-if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
+st.markdown("""
+    <style>
+    div.stButton > button:first-child {
+        background-color: #1E90FF;
+        color: white;
+        border: none;
+        padding: 0.6em 1.2em;
+        border-radius: 0.5em;
+        font-weight: bold;
+    }
+    div.stButton > button:first-child:hover {
+        background-color: #0F75D3;
+        color: white;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+if st.button("Calcular precio y rentabilidad 🚀", type="primary"):
     st.markdown("<h2 style='font-size:28px;'>4. Resultados del Análisis</h2>", unsafe_allow_html=True)
 
     # --- Output de Precio (SIMULADO) ---
