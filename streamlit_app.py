@@ -92,26 +92,36 @@ def calculate_irr(cash_flows):
 st.set_page_config(layout="centered", page_title="SmartRental") # Configuración de la página
 st.markdown("""
     <style>
-    /* --- COLOR PARA EL MULTISELECT (CIUDAD SELECCIONADA) --- */
-    span.css-1n6fa23 {
+    /* --- CIUDAD SELECCIONADA EN MULTISELECT (CHIP) --- */
+    div[data-baseweb="tag"] {
         background-color: #4099c6 !important;
         color: white !important;
+        border: none !important;
     }
 
-    /* --- COLOR PARA EL NÚMERO DEL SLIDER --- */
+    /* --- NÚMERO ENCIMA DEL SLIDER (como el "7") --- */
     div[data-testid="stThumbValue"] {
         color: #4099c6 !important;
         font-weight: bold;
     }
 
-    /* --- COLOR PARA LA BARRA DEL SLIDER --- */
-    div[data-baseweb="slider"] > div > div {
+    /* --- PUNTO (THUMB) DEL SLIDER --- */
+    div[data-testid="slider-thumb"] {
+        background-color: #4099c6 !important;
+        border: none !important;
+    }
+
+    /* --- BARRA ACTIVA DEL SLIDER (línea coloreada) --- */
+    div[data-testid="stSlider"] > div > div:nth-child(1) {
         background-color: #4099c6 !important;
     }
 
-    /* --- COLOR PARA EL CÍRCULO DEL SLIDER --- */
-    div[data-testid="slider-thumb"] {
-        background-color: #4099c6 !important;
+    /* --- EXTREMOS DEL SLIDER (como el 1 y el 20) --- */
+    div[data-testid="stTickBar"] span {
+        background: none !important;
+        color: #4099c6 !important;
+        padding: 0 !important;
+        font-weight: bold !important;
     }
     </style>
 """, unsafe_allow_html=True)
