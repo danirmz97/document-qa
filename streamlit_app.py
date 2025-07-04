@@ -100,12 +100,18 @@ with col_title:
     st.markdown("<h1 style='font-size:36px; margin: 0;'>SmartRental</h1>", unsafe_allow_html=True)  # Título proporcional
 
 st.markdown("""
-Analiza la viabilidad de comprar un inmueble para renta en Airbnb.
-Obtendrás un **precio promedio por noche**
-y la **Tasa Interna de Retorno (TIR)** estimada. 
-Finalmente la **Alerta de recomendación** para la compra o no del inmueble.
+Esta herramienta permite evaluar la viabilidad de invertir en un inmueble para alquiler turístico a través de Airbnb.
+
+Con base en los datos ingresados, se estima:
+
+- El **precio promedio por noche**,
+- La **Tasa Interna de Retorno (TIR)** esperada,
+- Y una **recomendación final** sobre la conveniencia de la inversión.
+
+Proporciona una visión inicial para apoyar la toma de decisiones.
 """)
 st.markdown("---")
+
 
 # --- 4. Inputs del inmueble (usuario) ---
 st.header("1. Datos del Inmueble")
