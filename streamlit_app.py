@@ -281,7 +281,7 @@ st.markdown("""
         font-weight: bold;
     }
     div.stButton > button:first-child:hover {
-        background-color: #0F75D3;
+        background-color: ##4099c6;
         color: white;
     }
     </style>
