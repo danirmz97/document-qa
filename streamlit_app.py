@@ -1,4 +1,73 @@
 import streamlit as st
+st.markdown("""
+    <style>
+    /* --- Chip de ciudad seleccionada en azul --- */
+    div[data-baseweb="tag"] {
+        background-color: #4099c6 !important;
+        color: white !important;
+        border: none !important;
+    }
+
+    /* --- Número encima del slider --- */
+    div[data-testid="stThumbValue"] {
+        color: #4099c6 !important;
+        font-weight: bold;
+    }
+
+    /* --- Línea activa del slider --- */
+    div[data-testid="stSlider"] > div > div:nth-child(1) {
+        background-color: #4099c6 !important;
+    }
+
+    /* --- Línea inactiva del slider --- */
+    div[data-testid="stSlider"] > div > div:nth-child(2) {
+        background-color: #e0e0e0 !important;
+    }
+
+    /* --- Punto del slider --- */
+    div[data-testid="slider-thumb"] {
+        background-color: #4099c6 !important;
+        border: 2px solid #4099c6 !important;
+        box-shadow: none !important;
+    }
+
+    /* --- Etiquetas del slider (ticks) --- */
+    div[data-testid="stTickBar"] span {
+        background: none !important;
+        color: #4099c6 !important;
+        font-weight: bold;
+    }
+
+    /* --- Hover del punto del slider --- */
+    div[data-testid="slider-thumb"]:hover,
+    div[data-testid="slider-thumb"]:focus {
+        box-shadow: none !important;
+    }
+
+    /* --- Cambiar mensajes de error de rojo a azul --- */
+    div.stAlert[data-testid="stAlert-error"] {
+        background-color: #d9edf7 !important;
+        border-left: 6px solid #4099c6 !important;
+        color: #4099c6 !important;
+    }
+
+    /* --- Cambiar íconos de error (círculo rojo) a azul --- */
+    svg[data-testid="stAlert-icon"] {
+        color: #4099c6 !important;
+    }
+
+    /* --- Cambiar texto rojo en general (p, span, strong) --- */
+    p, span, strong {
+        color: inherit;
+    }
+
+    /* --- Forzar estilos rojos a azul si hay inline styles (casos extremos) --- */
+    * {
+        color: #4099c6 !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 import pandas as pd
 import numpy as np
 import random # Para generar un precio aleatorio
