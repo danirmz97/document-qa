@@ -180,7 +180,7 @@ max_nights = st.number_input(
 )
 
 # --- 5. Selección de amenidades ---
-st.subheader("2. Selección de amenidades")
+st.markdown("<h2 style='font-size:28px;'>2. Selección de amenidades</h2>", unsafe_allow_html=True)
 
 # --- Diccionario: categorías y sus amenities (claves internas) ---
 amenities_por_categoria = {
@@ -246,8 +246,7 @@ for categoria in categorias_seleccionadas:
     amenities_seleccionadas[categoria] = seleccionadas
 
 # --- 6. Costes de inversión (usuario) ---
-st.markdown("---")
-st.header("3. Costes de inversión")
+st.markdown("<h2 style='font-size:28px;'>3. Costes de inversión</h2>", unsafe_allow_html=True)
 
 inversion_inmueble = st.number_input(
     "Inversión inicial del inmueble:",
@@ -272,7 +271,7 @@ st.markdown("---")
 
 # --- 6. Botón para Calcular ---
 if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
-    st.header("3. Resultados del Análisis")
+    st.markdown("<h2 style='font-size:28px;'>4. Resultados del Análisis</h2>", unsafe_allow_html=True)
 
     # --- Output de Precio (SIMULADO) ---
     precio_promedio_noche = get_random_price() # Llama a la función para obtener el precio aleatorio
