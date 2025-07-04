@@ -89,7 +89,7 @@ def calculate_irr(cash_flows):
 
 
 # --- 3. Título y Descripción de la Aplicación ---
-st.set_page_config(layout="centered", page_title="Calculadora Airbnb") # Configuración de la página
+st.set_page_config(layout="centered", page_title="SmartRental") # Configuración de la página
 
 col_logo, col_title = st.columns([1, 4]) # Una columna pequeña para el logo, una grande para el título
 
@@ -97,7 +97,7 @@ with col_logo:
     st.image("Logo.jpeg", width=100) # Ajusta el ancho según tu logo
 
 with col_title:
-    st.title("Calculadora de Rentabilidad")
+    st.title("SmartRental")
 
 st.markdown("""
 Analiza la viabilidad de comprar un inmueble para renta en Airbnb.
@@ -319,5 +319,5 @@ if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
 
 # --- 7. Pie de Página ---
 st.markdown("---")
-st.caption("Desarrollado con ❤️ por Latam&Spain")
+st.caption("Desarrollado por Latam&Spain Digital Solutions")
 st.caption("Disclaimer: Esta herramienta proporciona estimaciones generales para una toma de decisión inicial.")
