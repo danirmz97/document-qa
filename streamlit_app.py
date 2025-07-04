@@ -110,173 +110,145 @@ st.markdown("---")
 # --- 4. Inputs del inmueble (usuario) ---
 st.header("1. Datos del Inmueble")
 
-    ciudad = st.multiselect(
-        "Ubicación (ciudad):",
-        options=CIUDADES_DISPONIBLES,
-        default=["Barcelona"] if "Barcelona" in CIUDADES_DISPONIBLES else [],
-        max_selections=1,
-         placeholder="Escribe para buscar o selecciona una ciudad...",
-        help="Seleccione la ciudad donde se encuentra el inmueble."
-    )
-    room_type = st.selectbox(
-        "Tipo de alojamiento:",
-        ["Piso entero", "Habitación privada"],
-        help="Seleccione el tipo de alojamiento que desee."
-    )
-    numero_personas = st.slider(
-        "Número de huéspedes:",
-        min_value=1, max_value=20, value=4, help="Seleccione la capacidad máxima de huéspedes."
-    )
-    bathrooms = st.number_input(
+ciudad = st.multiselect(
+    "Ubicación (ciudad):",
+    options=CIUDADES_DISPONIBLES,
+    default=["Barcelona"] if "Barcelona" in CIUDADES_DISPONIBLES else [],
+    max_selections=1,
+    placeholder="Escribe para buscar o selecciona una ciudad...",
+    help="Seleccione la ciudad donde se encuentra el inmueble."
+)
+
+room_type = st.selectbox(
+    "Tipo de alojamiento:",
+    ["Piso entero", "Habitación privada"],
+    help="Seleccione el tipo de alojamiento que desee."
+)
+
+numero_personas = st.slider(
+    "Número de huéspedes:",
+    min_value=1, max_value=20, value=4,
+    help="Seleccione la capacidad máxima de huéspedes."
+)
+
+bathrooms = st.number_input(
     "Número de baños:",
-    min_value=1.0,  # no tiene sentido 0 baños en un alquiler
+    min_value=1.0,
     max_value=10.0,
     step=0.5,
     value=1.0,
     help="Seleccione la cantidad total de baños disponibles."
-    )
-    
-    bedrooms = st.number_input(
-        "Número de dormitorios:",
-        min_value=1,
-        max_value=10,
-        value=2,
-        help="Seleccione la cantidad total de dormitorios."
-    )
-    
-    beds = st.number_input(
-        "Número de camas:",
-        min_value=1,
-        max_value=20,
-        value=3,
-        help="Seleccione la cantidad total de camas disponibles."
-    )
+)
 
-    min_nights = st.number_input(
-        "Estancia mínima (noches):",
-        min_value=1,
-        max_value=365,
-        value=2,
-        help="Seleccione el número mínimo de noches para reservar."
-    )
-    
-    max_nights = st.number_input(
-        "Estancia máxima (noches):",
-        min_value=min_nights,  # no puede ser menor que min_nights
-        max_value=365,
-        value=30,
-        help="Seleccione el número máximo de noches permitidas por reserva."
-    )
+bedrooms = st.number_input(
+    "Número de dormitorios:",
+    min_value=1,
+    max_value=10,
+    value=2,
+    help="Seleccione la cantidad total de dormitorios."
+)
 
-    
+beds = st.number_input(
+    "Número de camas:",
+    min_value=1,
+    max_value=20,
+    value=3,
+    help="Seleccione la cantidad total de camas disponibles."
+)
+
+min_nights = st.number_input(
+    "Estancia mínima (noches):",
+    min_value=1,
+    max_value=365,
+    value=2,
+    help="Seleccione el número mínimo de noches para reservar."
+)
+
+max_nights = st.number_input(
+    "Estancia máxima (noches):",
+    min_value=min_nights,
+    max_value=365,
+    value=30,
+    help="Seleccione el número máximo de noches permitidas por reserva."
+)
+
+# --- 5. Selección de amenidades ---
 st.subheader("2. Selección de amenidades")
 
-# --- Diccionario: categorías y sus amenities (en inglés, como claves internas) ---
+# Diccionario de categorías con amenities
 amenities_por_categoria = {
-    "Tecnología y Entretenimiento": [
-        "wifi", "tv", "sound_system", "streaming_services", "game_console"
-    ],
-    "Seguridad": [
-        "security_guard", "security_system", "window_guards", "lockbox",
-        "smoke_alarm", "carbon_monoxide_alarm", "first_aid_kit",
-        "fire_extinguisher", "lock_on_bedroom_door"
-    ],
-    "Baño y Bienestar": [
-        "spa_access", "bathtub", "body_soap", "shampoo", "conditioner",
-        "shower_gel", "vegan_shampoo", "vegan_conditioner", "vegan_soap",
-        "hair_dryer", "essentials"
-    ],
-    "Lavandería y Limpieza": [
-        "washer", "dryer", "iron", "housekeeping"
-    ],
-    "Vistas y Espacios Exteriores": [
-        "garden", "balcony", "waterfront", "shared_backyard", "mountain_view", "hammock"
-    ],
-    "Accesibilidad y Movilidad": [
-        "parking", "free_parking", "elevator", "luggage_dropoff", "long_term_stays", "private_entrance"
-    ],
-    "Climatización y Confort": [
-        "air_conditioning", "heating", "workspace", "hot_water_kettle", "pool", "hot_tub", "sauna"
-    ],
-    "Cocina y Comida": [
-        "kitchen", "coffee_maker", "microwave", "refrigerator", "dishwasher", "oven",
-        "toaster", "blender", "waiststaff", "bar", "breakfast_bar", "bread_maker", 
-        "gas_stove", "electric_stove", "induction_stove", "chef_service", "bbq_grill"
-    ],
-    "Deporte, Salud y Ocio": [
-        "exercise_equipment", "ski_in_ski_out", "ski_in_out", "golf_course_view", "gym", 
-        "sports_court", "table_sports", "board_games", "bicycle"
-    ],
-    "Familia y Bebé": [
-        "children_books_toys", "baby_bath", "baby_monitor", "crib", "baby_care"
-    ]
+    "Tecnología y Entretenimiento": ["wifi", "tv", "sound_system", "streaming_services", "game_console"],
+    "Seguridad": ["security_guard", "security_system", "window_guards", "lockbox", "smoke_alarm", "carbon_monoxide_alarm", "first_aid_kit", "fire_extinguisher", "lock_on_bedroom_door"],
+    "Baño y Bienestar": ["spa_access", "bathtub", "body_soap", "shampoo", "conditioner", "shower_gel", "vegan_shampoo", "vegan_conditioner", "vegan_soap", "hair_dryer", "essentials"],
+    "Lavandería y Limpieza": ["washer", "dryer", "iron", "housekeeping"],
+    "Vistas y Espacios Exteriores": ["garden", "balcony", "waterfront", "shared_backyard", "mountain_view", "hammock"],
+    "Accesibilidad y Movilidad": ["parking", "free_parking", "elevator", "luggage_dropoff", "long_term_stays", "private_entrance"],
+    "Climatización y Confort": ["air_conditioning", "heating", "workspace", "hot_water_kettle", "pool", "hot_tub", "sauna"],
+    "Cocina y Comida": ["kitchen", "coffee_maker", "microwave", "refrigerator", "dishwasher", "oven", "toaster", "blender", "waiststaff", "bar", "breakfast_bar", "bread_maker", "gas_stove", "electric_stove", "induction_stove", "chef_service", "bbq_grill"],
+    "Deporte, Salud y Ocio": ["exercise_equipment", "ski_in_ski_out", "ski_in_out", "golf_course_view", "gym", "sports_court", "table_sports", "board_games", "bicycle"],
+    "Familia y Bebé": ["children_books_toys", "baby_bath", "baby_monitor", "crib", "baby_care"]
 }
 
-# --- Traducciones de claves internas al español para mostrar en interfaz ---
+# Traducciones de amenities
 amenity_traducciones = {
-    "wifi": "WiFi", "tv": "Televisión", "sound_system": "Sistema de sonido",
-    "streaming_services": "Servicios de streaming", "game_console": "Consola de videojuegos",
-    "security_guard": "Guardia de seguridad", "security_system": "Sistema de seguridad",
-    "window_guards": "Rejas en ventanas", "lockbox": "Caja de seguridad",
-    "smoke_alarm": "Detector de humo", "carbon_monoxide_alarm": "Detector de monóxido de carbono",
-    "first_aid_kit": "Botiquín de primeros auxilios", "fire_extinguisher": "Extintor",
-    "lock_on_bedroom_door": "Cerradura en dormitorio", "spa_access": "Acceso a spa",
-    "bathtub": "Bañera", "body_soap": "Jabón corporal", "shampoo": "Champú",
-    "conditioner": "Acondicionador", "shower_gel": "Gel de ducha",
-    "vegan_shampoo": "Champú vegano", "vegan_conditioner": "Acondicionador vegano",
-    "vegan_soap": "Jabón vegano", "hair_dryer": "Secador de pelo",
-    "essentials": "Esenciales (toallas, sábanas)", "washer": "Lavadora", "dryer": "Secadora",
-    "iron": "Plancha", "housekeeping": "Servicio de limpieza", "garden": "Jardín",
-    "balcony": "Balcón", "waterfront": "Frente al mar", "shared_backyard": "Patio compartido",
+    "wifi": "WiFi", "tv": "Televisión", "sound_system": "Sistema de sonido", "streaming_services": "Servicios de streaming",
+    "game_console": "Consola de videojuegos", "security_guard": "Guardia de seguridad", "security_system": "Sistema de seguridad",
+    "window_guards": "Rejas en ventanas", "lockbox": "Caja de seguridad", "smoke_alarm": "Detector de humo",
+    "carbon_monoxide_alarm": "Detector de monóxido de carbono", "first_aid_kit": "Botiquín de primeros auxilios",
+    "fire_extinguisher": "Extintor", "lock_on_bedroom_door": "Cerradura en dormitorio", "spa_access": "Acceso a spa",
+    "bathtub": "Bañera", "body_soap": "Jabón corporal", "shampoo": "Champú", "conditioner": "Acondicionador",
+    "shower_gel": "Gel de ducha", "vegan_shampoo": "Champú vegano", "vegan_conditioner": "Acondicionador vegano",
+    "vegan_soap": "Jabón vegano", "hair_dryer": "Secador de pelo", "essentials": "Esenciales (toallas, sábanas)",
+    "washer": "Lavadora", "dryer": "Secadora", "iron": "Plancha", "housekeeping": "Servicio de limpieza",
+    "garden": "Jardín", "balcony": "Balcón", "waterfront": "Frente al mar", "shared_backyard": "Patio compartido",
     "mountain_view": "Vista a la montaña", "hammock": "Hamaca", "parking": "Estacionamiento",
-    "free_parking": "Estacionamiento gratuito", "elevator": "Ascensor",
-    "luggage_dropoff": "Depósito de equipaje", "long_term_stays": "Estancias largas",
-    "private_entrance": "Entrada privada", "air_conditioning": "Aire acondicionado",
-    "heating": "Calefacción", "workspace": "Zona de trabajo", "hot_water_kettle": "Hervidor de agua",
-    "pool": "Piscina", "hot_tub": "Jacuzzi", "sauna": "Sauna", "kitchen": "Cocina",
-    "coffee_maker": "Cafetera", "microwave": "Microondas", "refrigerator": "Refrigerador",
-    "dishwasher": "Lavavajillas", "oven": "Horno", "toaster": "Tostadora", "blender": "Licuadora",
-    "waiststaff": "Personal de cocina", "bar": "Bar", "breakfast_bar": "Desayunador",
-    "bread_maker": "Panificadora", "gas_stove": "Cocina a gas", "electric_stove": "Cocina eléctrica",
-    "induction_stove": "Cocina de inducción", "chef_service": "Servicio de chef", "bbq_grill": "Parrilla",
-    "exercise_equipment": "Equipo de ejercicio", "ski_in_ski_out": "Acceso directo a pistas de esquí",
-    "ski_in_out": "Acceso a esquí", "golf_course_view": "Vista al campo de golf", "gym": "Gimnasio",
-    "sports_court": "Cancha deportiva", "table_sports": "Juegos de mesa",
-    "board_games": "Juegos de tablero", "bicycle": "Bicicletas",
+    "free_parking": "Estacionamiento gratuito", "elevator": "Ascensor", "luggage_dropoff": "Depósito de equipaje",
+    "long_term_stays": "Estancias largas", "private_entrance": "Entrada privada", "air_conditioning": "Aire acondicionado",
+    "heating": "Calefacción", "workspace": "Zona de trabajo", "hot_water_kettle": "Hervidor de agua", "pool": "Piscina",
+    "hot_tub": "Jacuzzi", "sauna": "Sauna", "kitchen": "Cocina", "coffee_maker": "Cafetera", "microwave": "Microondas",
+    "refrigerator": "Refrigerador", "dishwasher": "Lavavajillas", "oven": "Horno", "toaster": "Tostadora", "blender": "Licuadora",
+    "waiststaff": "Personal de cocina", "bar": "Bar", "breakfast_bar": "Desayunador", "bread_maker": "Panificadora",
+    "gas_stove": "Cocina a gas", "electric_stove": "Cocina eléctrica", "induction_stove": "Cocina de inducción",
+    "chef_service": "Servicio de chef", "bbq_grill": "Parrilla", "exercise_equipment": "Equipo de ejercicio",
+    "ski_in_ski_out": "Acceso directo a pistas de esquí", "ski_in_out": "Acceso a esquí",
+    "golf_course_view": "Vista al campo de golf", "gym": "Gimnasio", "sports_court": "Cancha deportiva",
+    "table_sports": "Juegos de mesa", "board_games": "Juegos de tablero", "bicycle": "Bicicletas",
     "children_books_toys": "Juguetes y libros infantiles", "baby_bath": "Bañera para bebé",
     "baby_monitor": "Vigilabebés", "crib": "Cuna", "baby_care": "Cuidados para bebé"
 }
 
-# --- Selectbox para elegir UNA categoría ---
+# Selector de categoría y amenities dentro de ella
 categoria_seleccionada = st.selectbox(
     "Selecciona una categoría de amenidades:",
     options=list(amenities_por_categoria.keys()),
     help="Seleccione una categoría para ver sus amenidades disponibles."
 )
 
-# --- Mostrar solo las amenities correspondientes a esa categoría ---
 opciones = amenities_por_categoria[categoria_seleccionada]
+
 amenities_en_categoria = st.multiselect(
     f"Seleccione las amenidades en {categoria_seleccionada} que desee:",
     options=opciones,
     format_func=lambda x: amenity_traducciones.get(x, x)
 )
 
-# --- Mostrar (debug o para usar en el modelo ML) ---
+# Debug o paso al modelo
 st.write("Amenidades seleccionadas (clave interna):", amenities_en_categoria)
 
-
-st.markdown("---")
 # --- 6. Costes de inversión (usuario) ---
-st.header("2. Costes de inversión")
+st.markdown("---")
+st.header("3. Costes de inversión")
 
 inversion_inmueble = st.number_input(
     "Inversión inicial en el inmueble (€):",
-    min_value=10000.0, value=150000.0, step=1000.0, format="%.2f", help="Costo de compra del inmueble."
+    min_value=10000.0, value=150000.0, step=1000.0, format="%.2f",
+    help="Costo de compra del inmueble."
 )
+
 inversion_amueblar = st.number_input(
     "Inversión en amueblar y equipar (€):",
-    min_value=0.0, value=20000.0, step=500.0, format="%.2f", help="Costo de mobiliario y equipamiento."
+    min_value=0.0, value=20000.0, step=500.0, format="%.2f",
+    help="Costo de mobiliario y equipamiento."
 )
 
 st.markdown("---")
