@@ -191,7 +191,7 @@ if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
             st.metric(label="Tasa Interna de Retorno (TIR)", value=f"{tir:.2%}")
 
             if tir > tasa_descuento_objetivo:
-                st.success(f"🎉 **¡Excelente!** La TIR ({tir:.2%}) es mayor que tu tasa de descuento objetivo ({tasa_descuento_objetivo:.2%}). "
+                st.success(f"💸 **¡Excelente!** La TIR ({tir:.2%}) es mayor que tu tasa de descuento objetivo ({tasa_descuento_objetivo:.2%}). "
                            "Este proyecto parece ser una **buena inversión** bajo tus criterios de rentabilidad.")
                 st.balloons() # Pequeña celebración visual
             else:
