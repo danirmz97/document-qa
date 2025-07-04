@@ -107,14 +107,14 @@ Finalmente la **Alerta de recomendación** para la compra o no del inmueble.
 """)
 st.markdown("---")
 
-# --- 4. Inputs del Usuario ---
-st.header("1. Datos del Inmueble y la Inversión")
+# --- 4. Inputs del inmueble (usuario) ---
+st.header("1. Datos del Inmueble")
 
 col1, col2 = st.columns(2)
 
 with col1:
     ciudad = st.multiselect(
-        "Ciudad del Inmueble:",
+        "Ubicación (ciudad):",
         options=CIUDADES_DISPONIBLES,
         default=["Barcelona"] if "Barcelona" in CIUDADES_DISPONIBLES else [],
         max_selections=1,
@@ -137,6 +137,12 @@ with col2:
         min_value=0, max_value=15, value=5, help="Cantidad de servicios adicionales que ofrece el inmueble."
     )
 
+
+
+st.markdown("---")
+# --- 6. Costes de inversión (usuario) ---
+st.header("2. Costes de inversión")
+
     inversion_inmueble = st.number_input(
         "Inversión inicial en el inmueble (€):",
         min_value=10000.0, value=150000.0, step=1000.0, format="%.2f", help="Costo de compra del inmueble."
@@ -147,7 +153,6 @@ with col2:
     )
 
 st.markdown("---")
-
 
 # --- 6. Botón para Calcular ---
 if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
