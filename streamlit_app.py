@@ -359,9 +359,10 @@ if st.button("Calcular precio y rentabilidad 🚀", type="primary"):
             """, unsafe_allow_html=True)
 
             if tir > tasa_descuento_objetivo:
+                st.markdown("<h1 style='text-align: center;'>💰💰💸 ¡Rentabilidad! 💸💰💰</h1>", unsafe_allow_html=True)
                 st.success(f"💸 *¡Excelente!* La TIR ({tir:.2%}) es mayor que tu tasa de descuento objetivo ({tasa_descuento_objetivo:.2%}). "
-                           "Este proyecto parece ser una *buena inversión* bajo tus criterios de rentabilidad.")
-                st.balloons()  # Pequeña celebración visual
+               "Este proyecto parece ser una *buena inversión* bajo tus criterios de rentabilidad.")
+
             else:
                 st.warning(f"⚠️ *Atención:* La TIR ({tir:.2%}) es menor que tu tasa de descuento objetivo ({tasa_descuento_objetivo:.2%}). "
                            "Considera revisar los inputs o si esta inversión cumple con tus expectativas de rentabilidad. Podría no ser tan atractiva.")
