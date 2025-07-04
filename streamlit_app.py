@@ -1,17 +1,20 @@
 import streamlit as st
 st.markdown("""
     <style>
-    div[data-testid="stCheckbox"] > label > div:first-child {
-        border: 2px solid #4099c6 !important;
-    }
-
-    div[data-testid="stCheckbox"] > label > div:first-child svg {
+    /* Fuerza el color del check (SVG) a azul cuando está seleccionado */
+    div[data-testid="stCheckbox"] svg {
         color: #4099c6 !important;
         background-color: #4099c6 !important;
         border-radius: 3px;
     }
+
+    /* Opcional: cambia el borde del checkbox cuando no está marcado */
+    div[data-testid="stCheckbox"] > label > div:first-child {
+        border: 2px solid #4099c6 !important;
+    }
     </style>
 """, unsafe_allow_html=True)
+
 import pandas as pd
 import numpy as np
 import random # Para generar un precio aleatorio
