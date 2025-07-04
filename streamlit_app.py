@@ -90,6 +90,23 @@ def calculate_irr(cash_flows):
 
 # --- 3. Título y Descripción de la Aplicación ---
 st.set_page_config(layout="centered", page_title="SmartRental") # Configuración de la página
+st.markdown("""
+    <style>
+    /* Cambia color del chip del multiselect */
+    .stMultiSelect > div[data-baseweb="tag"] {
+        background-color: #4099c6 !important;
+    }
+    .stMultiSelect > div[data-baseweb="tag"] span {
+        color: white !important;
+    }
+
+    /* Cambia color del número del slider */
+    .stSlider > div[data-testid="stThumbValue"] {
+        color: #4099c6 !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 
 col_logo, col_title = st.columns([1, 5])  # Ajustamos el ancho de las columnas
 
