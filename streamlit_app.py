@@ -1,13 +1,19 @@
 import streamlit as st
 st.markdown("""
     <style>
-    /* Checkboxes marcadas: cambia el color del check */
-    input[type="checkbox"]:checked + div:before {
+    /* Cambiar color del check de los checkboxes marcados */
+    div[data-testid="stCheckbox"] > label > div:first-child {
+        border: 2px solid #4099c6 !important;
+    }
+
+    div[data-testid="stCheckbox"] > label > div:first-child svg {
+        color: #4099c6 !important;
         background-color: #4099c6 !important;
-        border-color: #4099c6 !important;
+        border-radius: 3px;
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 import pandas as pd
 import numpy as np
