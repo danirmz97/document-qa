@@ -92,39 +92,52 @@ def calculate_irr(cash_flows):
 st.set_page_config(layout="centered", page_title="SmartRental") # Configuración de la página
 st.markdown("""
     <style>
-    /* --- CIUDAD SELECCIONADA EN MULTISELECT (CHIP) --- */
+    /* --- Chip de ciudad seleccionada en azul --- */
     div[data-baseweb="tag"] {
         background-color: #4099c6 !important;
         color: white !important;
         border: none !important;
     }
 
-    /* --- NÚMERO ENCIMA DEL SLIDER (como el "7") --- */
+    /* --- Número encima del slider --- */
     div[data-testid="stThumbValue"] {
         color: #4099c6 !important;
         font-weight: bold;
     }
 
-    /* --- PUNTO (THUMB) DEL SLIDER --- */
-    div[data-testid="slider-thumb"] {
-        background-color: #4099c6 !important;
-        border: none !important;
-    }
-
-    /* --- BARRA ACTIVA DEL SLIDER (línea coloreada) --- */
+    /* --- Línea activa (de izquierda a punto) --- */
     div[data-testid="stSlider"] > div > div:nth-child(1) {
         background-color: #4099c6 !important;
     }
 
-    /* --- EXTREMOS DEL SLIDER (como el 1 y el 20) --- */
+    /* --- Línea inactiva (de punto a la derecha) --- */
+    div[data-testid="stSlider"] > div > div:nth-child(2) {
+        background-color: #e0e0e0 !important;
+    }
+
+    /* --- Punto (thumb) del slider --- */
+    div[data-testid="slider-thumb"] {
+        background-color: #4099c6 !important;
+        border: 2px solid #4099c6 !important;
+        box-shadow: none !important;
+    }
+
+    /* --- Quitar fondo azul de los extremos (1 y 20) y cambiar color del número --- */
     div[data-testid="stTickBar"] span {
         background: none !important;
         color: #4099c6 !important;
-        padding: 0 !important;
-        font-weight: bold !important;
+        font-weight: bold;
     }
+
+    /* --- Eliminar sombra o borde al hacer hover/click en el punto --- */
+    div[data-testid="slider-thumb"]:hover,
+    div[data-testid="slider-thumb"]:focus {
+        box-shadow: none !important;
+    }
+
     </style>
 """, unsafe_allow_html=True)
+
 
 col_logo, col_title = st.columns([1, 5])  # Ajustamos el ancho de las columnas
 
