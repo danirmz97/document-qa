@@ -278,7 +278,7 @@ if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
     st.markdown(f"""
 <h3 style='font-size:22px;'>
     Precio promedio por noche estimado: 
-    <strong style='color:#2E8B57;'>{precio_promedio_noche:,.2f} €</strong>
+    <strong style='color:#386d79;'>{precio_promedio_noche:,.2f} €</strong>
 </h3>
 """, unsafe_allow_html=True)
 
@@ -314,7 +314,15 @@ if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
         tir = calculate_irr(flujos_caja)
 
         if tir is not None:
-            st.markdown(f"<h3 style='font-size:22px;'>TIR estimada: <strong>{tir:.2%}</strong></h3>", unsafe_allow_html=True)
+            color_tir = "#2E8B57" if tir >= tasa_descuento_objetivo else "#D9534F"
+
+st.markdown(f"""
+<h3 style='font-size:22px;'>
+    TIR estimada: 
+    <strong style='color:{color_tir};'>{tir:.2%}</strong>
+</h3>
+""", unsafe_allow_html=True)
+
 
             if tir > tasa_descuento_objetivo:
                 st.success(f"💸 **¡Excelente!** La TIR ({tir:.2%}) es mayor que tu tasa de descuento objetivo ({tasa_descuento_objetivo:.2%}). "
