@@ -243,18 +243,25 @@ st.markdown("---")
 st.header("3. Costes de inversión")
 
 inversion_inmueble = st.number_input(
-    "Inversión inicial en el inmueble (€):",
+    "Inversión inicial del inmueble:",
     min_value=10000.0, value=150000.0, step=1000.0, format="%.2f",
     help="Introduzca el coste aproximado del inmueble."
 )
 
 inversion_amueblar = st.number_input(
-    "Inversión en amueblar y equipar (€):",
+    "Inversión en amueblar y equipar:",
     min_value=0.0, value=20000.0, step=500.0, format="%.2f",
     help="Introduzca el coste aproximado de equipamiento del inmueble."
 )
 
+inversion_costes_admin = st.number_input(
+    "Costes administrativos anuales:",
+    min_value=0.0, value=5000.0, step=500.0, format="%.2f",
+    help="Incluye gastos como notaría, impuestos, gestoría, etc."
+)
+
 st.markdown("---")
+
 
 # --- 6. Botón para Calcular ---
 if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
