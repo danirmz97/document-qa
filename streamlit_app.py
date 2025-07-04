@@ -273,7 +273,7 @@ st.markdown("---")
 st.markdown("""
     <style>
     div.stButton > button:first-child {
-        background-color: ##4099c6;
+        background-color: #4099c6;
         color: white;
         border: none;
         padding: 0.6em 1.2em;
@@ -281,7 +281,7 @@ st.markdown("""
         font-weight: bold;
     }
     div.stButton > button:first-child:hover {
-        background-color: ##4099c6;
+        background-color: #4099c6;
         color: white;
     }
     </style>
