@@ -92,31 +92,29 @@ def calculate_irr(cash_flows):
 st.set_page_config(layout="centered", page_title="SmartRental") # Configuración de la página
 st.markdown("""
     <style>
-    /* Color del botón seleccionado del multiselect (ciudad) */
-    div[data-baseweb="tag"] {
+    /* --- COLOR PARA EL MULTISELECT (CIUDAD SELECCIONADA) --- */
+    span.css-1n6fa23 {
         background-color: #4099c6 !important;
         color: white !important;
     }
 
-    /* Color del número encima del slider */
+    /* --- COLOR PARA EL NÚMERO DEL SLIDER --- */
     div[data-testid="stThumbValue"] {
         color: #4099c6 !important;
         font-weight: bold;
     }
 
-    /* Color del slider (barra y bolita) */
-    .stSlider > div[data-testid="slider"] > div {
-        background: #4099c6 !important;
-    }
-
-    .stSlider [data-testid="slider-thumb"] {
+    /* --- COLOR PARA LA BARRA DEL SLIDER --- */
+    div[data-baseweb="slider"] > div > div {
         background-color: #4099c6 !important;
     }
 
+    /* --- COLOR PARA EL CÍRCULO DEL SLIDER --- */
+    div[data-testid="slider-thumb"] {
+        background-color: #4099c6 !important;
+    }
     </style>
 """, unsafe_allow_html=True)
-
-
 
 col_logo, col_title = st.columns([1, 5])  # Ajustamos el ancho de las columnas
 
