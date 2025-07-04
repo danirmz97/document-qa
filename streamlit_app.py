@@ -121,6 +121,11 @@ with col1:
          placeholder="Escribe para buscar o selecciona una ciudad...",
         help="Seleccione la ciudad donde se encuentra el inmueble."
     )
+    room_type = st.selectbox(
+        "Tipo de habitación:",
+        ["Entire place", "Private room", "Shared room", "Hotel room"],
+        help="Tipo de alojamiento disponible."
+    )
     numero_personas = st.slider(
         "Número de personas que puede alojar:",
         min_value=1, max_value=20, value=4, help="Capacidad máxima de huéspedes."
