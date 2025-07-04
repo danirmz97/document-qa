@@ -1,0 +1,39 @@
+/* Tipografía y estilo general */
+html, body, [class*="css"] {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    text-align: justify;
+}
+
+/* Títulos */
+h1 {
+    font-family: Consolas, monospace;
+    font-size: 2.5em;
+    color: #07365b;
+}
+
+h2 {
+    font-family: Consolas, monospace;
+    font-size: 2em;
+    color: #386d79;
+}
+
+h3 {
+    font-family: Consolas, monospace;
+    font-size: 1.6em;
+    color: #4099c6;
+}
+
+/* Botón principal */
+button {
+    background-color: #4099c6 !important;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 0.6em 1.4em;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #07365b !important;
+}
