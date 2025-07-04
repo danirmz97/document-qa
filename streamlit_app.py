@@ -122,17 +122,53 @@ with col1:
         help="Seleccione la ciudad donde se encuentra el inmueble."
     )
     room_type = st.selectbox(
-        "Tipo de habitación:",
-        ["Entire place", "Private room", "Shared room", "Hotel room"],
-        help="Tipo de alojamiento disponible."
+        "Tipo de alojamiento:",
+        ["Piso entero", "Habitación privada"],
+        help="Seleccione el tipo de alojamiento que desee."
     )
     numero_personas = st.slider(
-        "Número de personas que puede alojar:",
-        min_value=1, max_value=20, value=4, help="Capacidad máxima de huéspedes."
+        "Número de huéspedes:",
+        min_value=1, max_value=20, value=4, help="Seleccione la capacidad máxima de huéspedes."
     )
-    tamano_m2 = st.number_input(
-        "Tamaño del inmueble (m²):",
-        min_value=10, max_value=500, value=70, step=5, help="Metros cuadrados del inmueble."
+    bathrooms = st.number_input(
+    "Número de baños:",
+    min_value=1.0,  # no tiene sentido 0 baños en un alquiler
+    max_value=10.0,
+    step=0.5,
+    value=1.0,
+    help="Seleccione la cantidad total de baños disponibles."
+    )
+    
+    bedrooms = st.number_input(
+        "Número de dormitorios:",
+        min_value=1,
+        max_value=10,
+        value=2,
+        help="Seleccione la cantidad total de dormitorios."
+    )
+    
+    beds = st.number_input(
+        "Número de camas:",
+        min_value=1,
+        max_value=20,
+        value=3,
+        help="Seleccione la cantidad total de camas disponibles."
+    )
+
+    min_nights = st.number_input(
+        "Estancia mínima (noches):",
+        min_value=1,
+        max_value=365,
+        value=2,
+        help="Seleccione el número mínimo de noches para reservar."
+    )
+    
+    max_nights = st.number_input(
+        "Estancia máxima (noches):",
+        min_value=min_nights,  # no puede ser menor que min_nights
+        max_value=365,
+        value=30,
+        help="Seleccione el número máximo de noches permitidas por reserva."
     )
 
 with col2:
