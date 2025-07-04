@@ -119,7 +119,12 @@ with col1:
         default=["Barcelona"] if "Barcelona" in CIUDADES_DISPONIBLES else [],
         max_selections=1,
          placeholder="Escribe para buscar o selecciona una ciudad...",
-        help="Selecciona la ciudad donde se encuentra el inmueble."
+        help="Seleccione la ciudad donde se encuentra el inmueble."
+    )
+     room_type = st.selectbox(
+        "Tipo de alojamiento:",
+        ["Piso entero", "Habitación privada"],
+        help="Seleccione el tipo de alojamiento que deseas."
     )
 
     numero_personas = st.slider(
