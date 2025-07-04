@@ -94,7 +94,7 @@ st.set_page_config(layout="centered", page_title="SmartRental") # Configuración
 col_logo, col_title = st.columns([1, 4]) # Una columna pequeña para el logo, una grande para el título
 
 with col_logo:
-    st.image("Logo.jpeg", width=100) # Ajusta el ancho según tu logo
+    st.image("Título-removebg-preview.png", width=100) # Ajusta el ancho según tu logo
 
 with col_title:
     st.title("SmartRental")
