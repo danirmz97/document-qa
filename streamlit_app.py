@@ -238,13 +238,6 @@ for categoria in categorias_seleccionadas:
     )
     amenities_seleccionadas[categoria] = seleccionadas
 
-# --- Resultado final (puedes usarlo en el modelo o exportar) ---
-st.write("Amenidades seleccionadas por categoría:", amenities_seleccionadas)
-
-# --- Si prefieres tener un solo listado plano (para modelo) ---
-todas_las_amenities = [a for sublist in amenities_seleccionadas.values() for a in sublist]
-st.write("Lista total de amenidades (clave interna):", todas_las_amenities)
-
 # --- 6. Costes de inversión (usuario) ---
 st.markdown("---")
 st.header("3. Costes de inversión")
