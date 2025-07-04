@@ -275,7 +275,7 @@ if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
 
     # --- Output de Precio (SIMULADO) ---
     precio_promedio_noche = get_random_price() # Llama a la función para obtener el precio aleatorio
-    st.markdown(f"<h3 style='font-size:22px;'>Precio promedio por noche estimado: <strong>€{precio_promedio_noche:,.2f}</strong></h3>", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='font-size:22px;'>Precio promedio por noche estimado: <strong>{precio_promedio_noche:,.2f} €</strong></h3>", unsafe_allow_html=True)
     st.info("🚨 **Nota Importante:** Este precio es actualmente **aleatorio**. Una vez que tengas tu modelo de Machine Learning, deberás reemplazar la llamada a `get_random_price()` por la predicción de tu modelo.")
     st.markdown("---")
 
@@ -308,7 +308,7 @@ if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
         tir = calculate_irr(flujos_caja)
 
         if tir is not None:
-            st.metric(label="Tasa Interna de Retorno (TIR)", value=f"{tir:.2%}")
+            st.markdown(f"<h3 style='font-size:22px;'>TIR estimada: <strong>{tir:.2%}</strong></h3>", unsafe_allow_html=True)
 
             if tir > tasa_descuento_objetivo:
                 st.success(f"💸 **¡Excelente!** La TIR ({tir:.2%}) es mayor que tu tasa de descuento objetivo ({tasa_descuento_objetivo:.2%}). "
@@ -325,5 +325,13 @@ if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
 
 # --- 7. Pie de Página ---
 st.markdown("---")
-st.caption("Desarrollado por Latam&Spain Digital Solutions")
+
+st.markdown("""
+<div style="display: flex; align-items: center; gap: 10px;">
+    <img src="https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/Título-removebg-preview.png" alt="Logo" style="width: 40px;">
+    <span style="font-size: 14px;">Desarrollado por Latam&Spain Digital Solutions</span>
+</div>
+""", unsafe_allow_html=True)
+
 st.caption("Disclaimer: Esta herramienta proporciona estimaciones generales para una toma de decisión inicial.")
+
