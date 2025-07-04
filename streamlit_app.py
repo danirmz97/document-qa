@@ -172,10 +172,150 @@ with col1:
     )
 
 with col2:
-    amenities_count = st.slider(
-        "Número de comodidades/amenities (ej. piscina, gimnasio, wifi, AC, parking):",
-        min_value=0, max_value=15, value=5, help="Cantidad de servicios adicionales que ofrece el inmueble."
+    amenities_por_categoria = {
+    "Tecnología y Entretenimiento": [
+        "wifi", "tv", "sound_system", "streaming_services", "game_console"
+    ],
+    "Seguridad": [
+        "security_guard", "security_system", "window_guards", "lockbox",
+        "smoke_alarm", "carbon_monoxide_alarm", "first_aid_kit",
+        "fire_extinguisher", "lock_on_bedroom_door"
+    ],
+    "Baño y Bienestar": [
+        "spa_access", "bathtub", "body_soap", "shampoo", "conditioner",
+        "shower_gel", "vegan_shampoo", "vegan_conditioner", "vegan_soap",
+        "hair_dryer", "essentials"
+    ],
+    "Lavandería y Limpieza": [
+        "washer", "dryer", "iron", "housekeeping"
+    ],
+    "Vistas y Espacios Exteriores": [
+        "garden", "balcony", "waterfront", "shared_backyard", "mountain_view", "hammock"
+    ],
+    "Accesibilidad y Movilidad": [
+        "parking", "free_parking", "elevator", "luggage_dropoff", "long_term_stays", "private_entrance"
+    ],
+    "Climatización y Confort": [
+        "air_conditioning", "heating", "workspace", "hot_water_kettle", "pool", "hot_tub", "sauna"
+    ],
+    "Cocina y Comida": [
+        "kitchen", "coffee_maker", "microwave", "refrigerator", "dishwasher", "oven",
+        "toaster", "blender", "waiststaff", "bar", "breakfast_bar", "bread_maker", 
+        "gas_stove", "electric_stove", "induction_stove", "chef_service", "bbq_grill"
+    ],
+    "Deporte, Salud y Ocio": [
+        "exercise_equipment", "ski_in_ski_out", "ski_in_out", "golf_course_view", "gym", 
+        "sports_court", "table_sports", "board_games", "bicycle"
+    ],
+    "Familia y Bebé": [
+        "children_books_toys", "baby_bath", "baby_monitor", "crib", "baby_care"
+    ]
+}
+
+# --- Traducciones de amenities al español (puedes completarlo según necesites) ---
+amenity_traducciones = {
+    "wifi": "WiFi",
+    "tv": "Televisión",
+    "sound_system": "Sistema de sonido",
+    "streaming_services": "Servicios de streaming",
+    "game_console": "Consola de videojuegos",
+    "security_guard": "Guardia de seguridad",
+    "security_system": "Sistema de seguridad",
+    "window_guards": "Rejas en ventanas",
+    "lockbox": "Caja de seguridad",
+    "smoke_alarm": "Detector de humo",
+    "carbon_monoxide_alarm": "Detector de monóxido de carbono",
+    "first_aid_kit": "Botiquín de primeros auxilios",
+    "fire_extinguisher": "Extintor",
+    "lock_on_bedroom_door": "Cerradura en dormitorio",
+    "spa_access": "Acceso a spa",
+    "bathtub": "Bañera",
+    "body_soap": "Jabón corporal",
+    "shampoo": "Champú",
+    "conditioner": "Acondicionador",
+    "shower_gel": "Gel de ducha",
+    "vegan_shampoo": "Champú vegano",
+    "vegan_conditioner": "Acondicionador vegano",
+    "vegan_soap": "Jabón vegano",
+    "hair_dryer": "Secador de pelo",
+    "essentials": "Esenciales (toallas, sábanas)",
+    "washer": "Lavadora",
+    "dryer": "Secadora",
+    "iron": "Plancha",
+    "housekeeping": "Servicio de limpieza",
+    "garden": "Jardín",
+    "balcony": "Balcón",
+    "waterfront": "Frente al mar",
+    "shared_backyard": "Patio compartido",
+    "mountain_view": "Vista a la montaña",
+    "hammock": "Hamaca",
+    "parking": "Estacionamiento",
+    "free_parking": "Estacionamiento gratuito",
+    "elevator": "Ascensor",
+    "luggage_dropoff": "Depósito de equipaje",
+    "long_term_stays": "Estancias largas",
+    "private_entrance": "Entrada privada",
+    "air_conditioning": "Aire acondicionado",
+    "heating": "Calefacción",
+    "workspace": "Zona de trabajo",
+    "hot_water_kettle": "Hervidor de agua",
+    "pool": "Piscina",
+    "hot_tub": "Jacuzzi",
+    "sauna": "Sauna",
+    "kitchen": "Cocina",
+    "coffee_maker": "Cafetera",
+    "microwave": "Microondas",
+    "refrigerator": "Refrigerador",
+    "dishwasher": "Lavavajillas",
+    "oven": "Horno",
+    "toaster": "Tostadora",
+    "blender": "Licuadora",
+    "waiststaff": "Personal de cocina",
+    "bar": "Bar",
+    "breakfast_bar": "Desayunador",
+    "bread_maker": "Panificadora",
+    "gas_stove": "Cocina a gas",
+    "electric_stove": "Cocina eléctrica",
+    "induction_stove": "Cocina de inducción",
+    "chef_service": "Servicio de chef",
+    "bbq_grill": "Parrilla",
+    "exercise_equipment": "Equipo de ejercicio",
+    "ski_in_ski_out": "Acceso directo a pistas de esquí",
+    "ski_in_out": "Acceso a esquí",
+    "golf_course_view": "Vista al campo de golf",
+    "gym": "Gimnasio",
+    "sports_court": "Cancha deportiva",
+    "table_sports": "Juegos de mesa",
+    "board_games": "Juegos de tablero",
+    "bicycle": "Bicicletas",
+    "children_books_toys": "Juguetes y libros infantiles",
+    "baby_bath": "Bañera para bebé",
+    "baby_monitor": "Vigilabebés",
+    "crib": "Cuna",
+    "baby_care": "Cuidados para bebé"
+}
+
+# --- Selección dinámica de amenities ---
+st.subheader("🧩 Selección de amenities")
+
+categorias_seleccionadas = st.multiselect(
+    "Selecciona una o más categorías de amenities:",
+    options=list(amenities_por_categoria.keys()),
+    help="Selecciona las categorías que mejor describen las comodidades de tu alojamiento."
+)
+
+amenities_seleccionadas = []
+
+for categoria in categorias_seleccionadas:
+    opciones = amenities_por_categoria[categoria]
+    opciones_traducidas = [amenity_traducciones.get(a, a) for a in opciones]
+
+    seleccionadas = st.multiselect(
+        f"Amenities en: {categoria}",
+        options=opciones,
+        format_func=lambda x: amenity_traducciones.get(x, x)
     )
+    amenities_seleccionadas.extend(seleccionadas)
 
 
 
