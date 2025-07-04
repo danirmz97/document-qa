@@ -329,7 +329,12 @@ st.markdown("---")
 col_logo_footer, col_text_footer = st.columns([1, 8])
 
 with col_logo_footer:
-    st.image("26570fae-10f7-4e26-9368-aba88dfebd43.png", width=40)
+    st.image("Título-removebg-preview.png", width=40)
+
+with col_text_footer:
+    st.markdown("<p style='font-size:14px; margin-top: 12px;'>Desarrollado por Latam&Spain Digital Solutions</p>", unsafe_allow_html=True)
+
+st.caption("Disclaimer: Esta herramienta proporciona estimaciones generales para una toma de decisión inicial.")
 
 with col_text_footer:
     st.markdown("<p style='font-size:14px; margin-top: 12px;'>Desarrollado por Latam&Spain Digital Solutions</p>", unsafe_allow_html=True)
