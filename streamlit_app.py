@@ -225,7 +225,7 @@ amenity_traducciones = {
 }
 
 # --- Selector tipo checkbox (como en la imagen que enviaste) ---
-st.markdown("#### Tipo de amenidades")
+st.markdown("<h3 style='font-size:22px;'>Tipo de amenidades</h3>", unsafe_allow_html=True)
 categorias_seleccionadas = []
 
 for categoria in amenities_por_categoria.keys():
@@ -275,12 +275,12 @@ if st.button("🚀 Calcular Precio y Rentabilidad", type="primary"):
 
     # --- Output de Precio (SIMULADO) ---
     precio_promedio_noche = get_random_price() # Llama a la función para obtener el precio aleatorio
-    st.subheader(f"Precio Promedio por Noche Estimado: **€{precio_promedio_noche:,.2f}**")
+    st.markdown(f"<h3 style='font-size:22px;'>Precio promedio por noche estimado: <strong>€{precio_promedio_noche:,.2f}</strong></h3>", unsafe_allow_html=True)
     st.info("🚨 **Nota Importante:** Este precio es actualmente **aleatorio**. Una vez que tengas tu modelo de Machine Learning, deberás reemplazar la llamada a `get_random_price()` por la predicción de tu modelo.")
     st.markdown("---")
 
     # --- Cálculo de Rentabilidad (TIR) ---
-    st.subheader("Análisis de Rentabilidad (TIR)")
+    st.markdown("<h3 style='font-size:22px;'>Análisis de Rentabilidad (TIR)</h3>", unsafe_allow_html=True)
 
     if precio_promedio_noche > 0:
         ingresos_brutos_diarios = precio_promedio_noche
