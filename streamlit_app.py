@@ -1,4 +1,20 @@
 import streamlit as st
+st.markdown("""
+    <style>
+    /* Cambiar los chips de multiselect (rojo por defecto) a azul */
+    div[data-baseweb="tag"] {
+        background-color: #4099c6 !important;
+        color: white !important;
+        border: none !important;
+    }
+
+    /* Cambiar el botón "x" de cada chip a blanco */
+    div[data-baseweb="tag"] svg {
+        color: white !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 import pandas as pd
 import numpy as np
 import random # Para generar un precio aleatorio
