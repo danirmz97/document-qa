@@ -91,13 +91,13 @@ def calculate_irr(cash_flows):
 # --- 3. Título y Descripción de la Aplicación ---
 st.set_page_config(layout="centered", page_title="SmartRental") # Configuración de la página
 
-col_logo, col_title = st.columns([1, 4]) # Una columna pequeña para el logo, una grande para el título
+col_logo, col_title = st.columns([1, 5])  # Ajustamos el ancho de las columnas
 
 with col_logo:
-    st.image("Título-removebg-preview.png", width=100) # Ajusta el ancho según tu logo
+    st.image("Título-removebg-preview.png", width=80)  # Tamaño ideal del logo
 
 with col_title:
-    st.title("SmartRental")
+    st.markdown("<h1 style='font-size:36px; margin: 0;'>SmartRental</h1>", unsafe_allow_html=True)  # Título proporcional
 
 st.markdown("""
 Analiza la viabilidad de comprar un inmueble para renta en Airbnb.
