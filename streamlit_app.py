@@ -114,7 +114,8 @@ st.markdown("---")
 
 
 # --- 4. Inputs del inmueble (usuario) ---
-st.header("1. Datos del Inmueble")
+st.markdown("<h2 style='font-size:28px;'>1. Datos del Inmueble</h2>", unsafe_allow_html=True)
+
 
 ciudad = st.multiselect(
     "Ubicación (ciudad):",
