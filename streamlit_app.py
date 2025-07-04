@@ -273,7 +273,7 @@ st.markdown("---")
 st.markdown("""
     <style>
     div.stButton > button:first-child {
-        background-color: #1E90FF;
+        background-color: ##4099c6;
         color: white;
         border: none;
         padding: 0.6em 1.2em;
