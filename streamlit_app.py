@@ -1,4 +1,27 @@
 import streamlit as st
+st.markdown("""
+    <style>
+    /* --- Forzar el color azul en el icono check del checkbox marcado --- */
+    div[data-testid="stCheckbox"] svg {
+        fill: #4099c6 !important;
+        color: #4099c6 !important;
+        background-color: #4099c6 !important;
+        border-radius: 4px !important;
+    }
+
+    /* --- También estiliza el borde del checkbox para que sea azul incluso sin marcar --- */
+    div[data-testid="stCheckbox"] > label > div:first-child {
+        border: 2px solid #4099c6 !important;
+        border-radius: 4px !important;
+    }
+
+    /* --- Y quitamos la sombra por si el tema aplica alguna --- */
+    div[data-testid="stCheckbox"] > label > div:first-child:hover {
+        box-shadow: none !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 import pandas as pd
 import numpy as np
 import random # Para generar un precio aleatorio
