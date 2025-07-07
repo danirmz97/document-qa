@@ -287,41 +287,11 @@ def normalize_city_name(city_name):
 
 costos_operacion_porcentaje = .5
 
-ocupacion_anual_porcentaje = .70
 
 tasa_descuento_objetivo = .10
 
 horizonte_analisis_anos = 10
 
-
-# app.py (en la parte superior de tu script, después de los imports)
-
-# latitude                            852427 non-null  float64
-#  1   longitude                           852427 non-null  float64
-#  2   accommodates                        852427 non-null  int64  
-#  3   bathrooms                           852427 non-null  float64
-#  4   bedrooms                            852427 non-null  int64  
-#  5   beds                                852427 non-null  float64
-#  6   minimum_nights                      852427 non-null  int64  
-#  7   maximum_nights                      852427 non-null  int64  
-#  8   accesibilidad_y_movilidad_count     852427 non-null  int64  
-#  9   baño_y_bienestar_count              852427 non-null  int64  
-#  10  climatización_y_confort_count       852427 non-null  int64  
-#  11  cocina_y_comida_count               852427 non-null  int64  
-#  12  deporte_salud_y_ocio_count          852427 non-null  int64  
-#  13  familia_y_bebé_count                852427 non-null  int64  
-#  14  lavandería_y_limpieza_count         852427 non-null  int64  
-#  15  seguridad_count                     852427 non-null  int64  
-#  16  tecnología_y_entretenimiento_count  852427 non-null  int64  
-#  17  vistas_y_espacios_exteriores_count  852427 non-null  int64  
-#  18  total_amenities_count               852427 non-null  int64  
-#  19  city_label                          852427 non-null  int64  
-#  20  room_type_entire home/apt           852427 non-null  int32  
-#  21  room_type_hotel room                852427 non-null  int32  
-#  22  room_type_private room              852427 non-null  int32  
-#  23  room_type_shared room          
-
-# --- 1. Simulación de Precio (PARA REEMPLAZAR DESPUÉS CON TU MODELO ML) ---
 
 @st.cache_resource
 def load_model():
@@ -712,11 +682,20 @@ inversion_amueblar = st.number_input(
     help="Introduzca el coste aproximado de equipamiento del inmueble."
 )
 
-inversion_costes_admin = st.number_input(
+costos_operacion_anuales = st.number_input(
     "Costes administrativos anuales:",
     min_value=0.0, value=5000.0, step=500.0, format="%.2f",
     help="Incluye gastos como notaría, impuestos, gestoría, etc."
 )
+
+st.markdown("<h2 style='font-size:28px;'>4. Ocupación anual</h2>", unsafe_allow_html=True)
+
+ocupacion_anual_porcentaje = st.number_input(
+    "Porcentaje de ocupación anual:",
+    min_value=0.0, max_value=1.0, value=0.7, step=0.1, format="%.2f",
+    help="Especifica el porcentaje de ocupación anual, este valor lo puedes consultar en el dashboard para la ciudad escogida"
+)
+
 
 st.markdown("---")
 
@@ -786,7 +765,7 @@ if st.button("Calcular precio y rentabilidad 🚀", type="primary"):
     st.markdown(f"""
 <h3 style='font-size:22px;'>
     Precio promedio por noche estimado: 
-    <strong style='color:#386d79;'>{precio_promedio_noche:,.2f} €</strong>
+    <strong style='color:#386d79;'>{precio_promedio_noche:,.2f} $</strong>
 </h3>
 """, unsafe_allow_html=True)
 
@@ -797,8 +776,6 @@ if st.button("Calcular precio y rentabilidad 🚀", type="primary"):
         dias_ocupados_anuales = 365 * ocupacion_anual_porcentaje
         ingresos_brutos_anuales = ingresos_brutos_diarios * dias_ocupados_anuales
 
-        costos_operacion_anuales = ingresos_brutos_anuales * costos_operacion_porcentaje
-
         flujo_caja_anual_neto = ingresos_brutos_anuales - costos_operacion_anuales
 
         # Crear flujos de caja para la TIR
@@ -807,8 +784,10 @@ if st.button("Calcular precio y rentabilidad 🚀", type="primary"):
         flujos_caja = [-inversion_total_inicial]
 
         # Luego, los flujos de caja anuales netos para el horizonte de análisis
-        for _ in range(horizonte_analisis_anos):
+        for _ in range(horizonte_analisis_anos - 1):
             flujos_caja.append(flujo_caja_anual_neto)
+
+        flujos_caja.append(inversion_inmueble)
 
         # Opcional: Valor de rescate/venta del inmueble al final del período
         # Para un análisis más completo, se podría añadir un valor de venta estimado
