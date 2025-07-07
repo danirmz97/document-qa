@@ -316,9 +316,6 @@ if st.button("Calcular precio y rentabilidad 🚀", type="primary"):
 </h3>
 """, unsafe_allow_html=True)
 
-    st.info("🚨 **Nota Importante:** Este precio es actualmente **aleatorio**. Una vez que tengas tu modelo de Machine Learning, deberás reemplazar la llamada a `get_random_price()` por la predicción de tu modelo.")
-    st.markdown("---")
-
     # --- Cálculo de Rentabilidad (TIR) ---
     st.markdown("<h3 style='font-size:22px;'>Análisis de Rentabilidad (TIR)</h3>", unsafe_allow_html=True)
 
