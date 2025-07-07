@@ -791,7 +791,6 @@ if st.button("Calcular precio y rentabilidad 🚀", type="primary"):
 """, unsafe_allow_html=True)
 
     # --- Cálculo de Rentabilidad (TIR) ---
-    st.markdown("<h3 style='font-size:22px;'>Análisis de Rentabilidad (TIR)</h3>", unsafe_allow_html=True)
 
     if precio_promedio_noche > 0:
         ingresos_brutos_diarios = precio_promedio_noche
